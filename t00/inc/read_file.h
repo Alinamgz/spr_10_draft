@@ -11,19 +11,22 @@
 #define BUFFER_SIZE 64
 
 // includes
-#include <stdio.h>
 #include <fcntl.h>
+#include <stdio.h>
 #include <unistd.h>
-#include <stdbool.h>
+
+// structs
+typedef struct s_ffread {
+    int fd;
+    int cl_err;
+    char buffer[BUFFER_SIZE + 1];
+    ssize_t rslt;
+}              t_ffread;
 
 // funcs
-void mx_printchar(char c);
-void mx_printint(int n);
+int mx_read_file(const char **arg_v);
+int mx_strlen(const char *s);
+
 void mx_printerr(const char *s);
 void mx_printstr(const char *s);
-void mx_read_file(int valid_f);
-
-int mx_is_valid(int arg_c, const char **arg_v);
-
-int mx_strlen(const char *s);
 

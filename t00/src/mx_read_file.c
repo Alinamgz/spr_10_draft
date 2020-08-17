@@ -1,19 +1,24 @@
 #include "read_file.h"
 
-void mx_read_file(int valid_f){
+int mx_read_file(const char **arg_v) {
+    t_ffread r_fl;
 
-    ssize_t read_f;
-    char buffer [BUFFER_SIZE + 1];
+    r_fl.fd = open(arg_v[1], O_RDONLY);
+    if (r_fl.fd < 0)
+        return 1;
 
-    // read_f = read(valid_f, buffer, BUFFER_SIZE);
-    while ( (read_f = read(valid_f, buffer, BUFFER_SIZE)) > 0) {
-        buffer[read_f] = 0;
-        mx_printstr(buffer);
+    while ((r_fl.rslt = read(r_fl.fd, r_fl.buffer, BUFFER_SIZE)) > 0) {
+        r_fl.buffer[r_fl.rslt] = 0;
+        mx_printstr(r_fl.buffer);
+    }
+    if (r_fl.rslt < 0) {
+        close(r_fl.fd);
+        return 1;
     }
 
-    if (read_f < 0) {
-        mx_printerr("nee chital");
-    }
+    r_fl.cl_err = close(r_fl.fd);
+    if (r_fl.cl_err < 0)
+        return 1;
 
-    close(valid_f);
+    return 0;
 }

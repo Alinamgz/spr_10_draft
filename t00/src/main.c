@@ -1,13 +1,20 @@
 #include "read_file.h"
 
 int main(int argc, const char *argv[]) {
+    int usg_err = (argc != 2) ? 1 : 0;
+    int other_err;
 
-    int valid_f = mx_is_valid(argc, argv);
-
-    if (valid_f < 0) {
+    if( usg_err) {
+        mx_printerr(USG_ERR_MSG);
         return 1;
     }
 
-    mx_read_file(valid_f);
+    other_err = mx_read_file(argv);
+    
+    if (other_err) {
+        mx_printerr(ERR_MSG);
+        return 1;
+    }
+
     return 0;
 }
