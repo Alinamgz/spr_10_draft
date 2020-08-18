@@ -8,7 +8,7 @@ char *mx_file_to_str(int arg_c, const char *filename) {
     fts.dst = NULL;
 
     fts.src_fd = open(filename, O_RDONLY);
-    if (fts.src < 0)
+    if (fts.src_fd < 0)
         return NULL;
 
     while ((fts.src_rslt = read(fts.src_fd, fts.buff, BUFFER_SIZE)) > 0) {
