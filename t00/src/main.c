@@ -4,7 +4,7 @@ int main(int argc, const char *argv[]) {
     int usg_err = (argc != 2) ? 1 : 0;
     int other_err;
 
-    if( usg_err) {
+    if (usg_err) {
         mx_printerr(USG_ERR_MSG);
         return 1;
     }

@@ -1,7 +1,7 @@
 # ======== variables ========
 
 # -- files and dirs --
-NAME = read_file
+NAME = mx_cp
 
 INC_DIR = inc
 SRC_DIR = src
