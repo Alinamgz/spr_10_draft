@@ -1,15 +1,10 @@
-// TODO read and edit
-
 #include "cat.h"
 
 int mx_read_file(int src) {
     t_file cp;
 
     cp.src_fd = src;
-    mx_err_check(cp.src_fd, cp.src_fd);
-
     cp.dst_fd = 1;
-    mx_err_check(cp.dst_fd, cp.src_fd);
 
     while ((cp.src_rslt = read(cp.src_fd, cp.buffer, BUFFER_SIZE)) > 0) {
         cp.dst_rslt = write(cp.dst_fd, cp.buffer, cp.src_rslt);
